@@ -24,5 +24,6 @@ func (invocation Invocation) Payload() (*json.RawMessage, error) {
 	} else if invocation.Context.Source != nil {
 		return invocation.Context.Source, nil
 	}
+
 	return nil, EmptyPayloadError(invocation.Context.Arguments, invocation.Context.Source)
 }

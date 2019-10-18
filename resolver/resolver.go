@@ -6,17 +6,22 @@ import (
 )
 
 type Request *json.RawMessage
+
 type Response interface{}
-type Handler interface{}
+
+type Handler func(context context.Context, request Request) (Response, error)
 
 type Resolver struct {
-	// TODO: Enforce the signature of an handler: (context, payload) -> (response, error)
 	Handler Handler
 }
 
-func ToResolver(resolver interface{}) (Resolver, error) {
+func ToResolver(handler Handler) (Resolver, error) {
 	// TODO: Validation, is it a resolver?
-	return Resolver{}, nil
+	// Too much indirection here, it's strongly type, basta
+
+	return Resolver{
+		Handler: handler,
+	}, nil
 }
 
 func (resolver Resolver) Resolve(context context.Context, request Request) (Response, error) {
