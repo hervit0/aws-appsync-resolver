@@ -20,8 +20,14 @@ func (pipeline Pipeline) Declare(resolverName string, handler interface{}) error
 // TODO: Here, interface{} represents the return type of the handler response
 func (pipeline Pipeline) Handle(invocation invocation.Invocation) (interface{}, error) {
 	resolverHandler, ok := pipeline[invocation.Field]
-	if ok {
-		return resolverHandler, nil
+	if !ok {
+		return nil, fmt.Errorf("resolver not found: %v", invocation.Field)
 	}
-	return nil, fmt.Errorf("resolver not found: %v", invocation.Field)
+
+	payload, errParsingPayload := invocation.Payload()
+	if errParsingPayload != nil {
+		return nil, errParsingPayload
+	}
+
+	return resolverHandler.Resolve(payload), nil
 }
