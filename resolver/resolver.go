@@ -7,10 +7,11 @@ import (
 
 type Request *json.RawMessage
 type Response interface{}
+type Handler interface{}
 
 type Resolver struct {
-	// TODO: Enforce the signature of an handler handler: (context, payload) -> (response, error)
-	Handler interface{}
+	// TODO: Enforce the signature of an handler: (context, payload) -> (response, error)
+	Handler Handler
 }
 
 func ToResolver(resolver interface{}) (Resolver, error) {

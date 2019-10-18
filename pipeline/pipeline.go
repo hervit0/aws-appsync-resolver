@@ -9,8 +9,7 @@ import (
 
 type Pipeline map[string]resolver.Resolver
 
-// TODO: Here, interface{} represents the handler method of the resolver
-func (pipeline Pipeline) Declare(resolverName string, handler interface{}) error {
+func (pipeline Pipeline) Declare(resolverName string, handler resolver.Handler) error {
 	resolverHandler, errorCreateResolver := resolver.ToResolver(handler)
 	if errorCreateResolver != nil {
 		pipeline[resolverName] = resolverHandler
@@ -18,8 +17,7 @@ func (pipeline Pipeline) Declare(resolverName string, handler interface{}) error
 	return errorCreateResolver
 }
 
-// TODO: Here, interface{} represents the return type of the handler response
-func (pipeline Pipeline) Handle(context context.Context, invocation invocation.Invocation) (interface{}, error) {
+func (pipeline Pipeline) Handle(context context.Context, invocation invocation.Invocation) (resolver.Response, error) {
 	resolverHandler, ok := pipeline[invocation.Field]
 	if !ok {
 		return nil, fmt.Errorf("resolver not found: %v", invocation.Field)
