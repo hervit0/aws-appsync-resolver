@@ -1,6 +1,7 @@
 package resolver
 
 import (
+	"context"
 	"encoding/json"
 )
 
@@ -17,7 +18,7 @@ func ToResolver(resolver interface{}) (Resolver, error) {
 	return Resolver{}, nil
 }
 
-func (resolver Resolver) Resolve(request Request) (Response, error) {
+func (resolver Resolver) Resolve(context context.Context, request Request) (Response, error) {
 	// TODO: Map the argument and perform the call
 	//reflect.ValueOf(resolver.handler).Call(payload)
 	var response Response

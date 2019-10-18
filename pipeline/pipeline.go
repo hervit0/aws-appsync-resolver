@@ -1,6 +1,7 @@
 package pipeline
 
 import (
+	"context"
 	"fmt"
 	"github.com/hervit0/aws-appsync-resolver/invocation"
 	"github.com/hervit0/aws-appsync-resolver/resolver"
@@ -18,7 +19,7 @@ func (pipeline Pipeline) Declare(resolverName string, handler interface{}) error
 }
 
 // TODO: Here, interface{} represents the return type of the handler response
-func (pipeline Pipeline) Handle(invocation invocation.Invocation) (interface{}, error) {
+func (pipeline Pipeline) Handle(context context.Context, invocation invocation.Invocation) (interface{}, error) {
 	resolverHandler, ok := pipeline[invocation.Field]
 	if !ok {
 		return nil, fmt.Errorf("resolver not found: %v", invocation.Field)
@@ -29,5 +30,5 @@ func (pipeline Pipeline) Handle(invocation invocation.Invocation) (interface{}, 
 		return nil, errParsingPayload
 	}
 
-	return resolverHandler.Resolve(payload), nil
+	return resolverHandler.Resolve(context, payload), nil
 }
