@@ -1,2 +1,5 @@
-# aws-appsync-resolver
-Go AppSync Resolver library
+# AWS App Sync Resolver
+
+*In progress* 
+
+_Just trying to have decent library to deal with App Sync Resolver_
