@@ -15,15 +15,6 @@ type Resolver struct {
 	Handler Handler
 }
 
-func ToResolver(handler Handler) (Resolver, error) {
-	// TODO: Validation, is it a resolver?
-	// Too much indirection here, it's strongly type, basta
-
-	return Resolver{
-		Handler: handler,
-	}, nil
-}
-
 func (resolver Resolver) Resolve(context context.Context, request Request) (Response, error) {
 	// TODO: Map the argument and perform the call
 	//reflect.ValueOf(resolver.handler).Call(payload)

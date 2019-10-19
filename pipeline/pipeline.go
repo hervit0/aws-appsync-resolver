@@ -9,12 +9,9 @@ import (
 
 type Pipeline map[string]resolver.Resolver
 
-func (pipeline Pipeline) Declare(resolverName string, handler resolver.Handler) error {
-	resolverHandler, errorCreateResolver := resolver.ToResolver(handler)
-	if errorCreateResolver != nil {
-		pipeline[resolverName] = resolverHandler
-	}
-	return errorCreateResolver
+func (pipeline *Pipeline) Declare(resolverName string, handler resolver.Handler) *Pipeline {
+	(*pipeline)[resolverName] = resolver.Resolver{Handler: handler}
+	return pipeline
 }
 
 func (pipeline Pipeline) Handle(context context.Context, invocation invocation.Invocation) (resolver.Response, error) {
