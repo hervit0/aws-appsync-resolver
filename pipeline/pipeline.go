@@ -25,5 +25,5 @@ func (pipeline Pipeline) Handle(context context.Context, invocation invocation.I
 		return nil, errParsingPayload
 	}
 
-	return resolverHandler.Resolve(context, payload), nil
+	return resolverHandler.Resolve(context, payload)
 }
