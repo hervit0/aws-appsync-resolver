@@ -7,17 +7,17 @@ import (
 	"reflect"
 )
 
-type Request *json.RawMessage
+type InvocationRequest *json.RawMessage
 
 type Response interface{}
 
-type Handler func(context context.Context, request Request) (Response, error)
+type Handler func(context context.Context, request interface{}) (Response, error)
 
 type Resolver struct {
 	Handler Handler
 }
 
-func (resolver Resolver) Resolve(context context.Context, request Request) (Response, error) {
+func (resolver Resolver) Resolve(context context.Context, request InvocationRequest) (Response, error) {
 	handlerRequestType := reflect.TypeOf(resolver.Handler).In(1)
 	requestArguments, err := parse(request, &handlerRequestType)
 	if err != nil {
@@ -26,10 +26,13 @@ func (resolver Resolver) Resolve(context context.Context, request Request) (Resp
 	requestArgumentsWithContext := append([]reflect.Value{reflect.ValueOf(context)}, requestArguments...)
 
 	response := reflect.ValueOf(resolver.Handler).Call(requestArgumentsWithContext)
+	if response[1].IsNil() {
+		return response[0].Interface(), nil
+	}
 	return response[0].Interface(), response[1].Interface().(error)
 }
 
-func parse(rawPayload Request, requestType *reflect.Type) ([]reflect.Value, error) {
+func parse(rawPayload InvocationRequest, requestType *reflect.Type) ([]reflect.Value, error) {
 	args := reflect.New(*requestType)
 
 	if err := json.Unmarshal(*rawPayload, args.Interface()); err != nil {

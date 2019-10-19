@@ -18,7 +18,7 @@ func TestPipeline(t *testing.T) {
 
 var _ = Describe("Pipeline", func() {
 	var pipeline pipeline.Pipeline
-	handler := func(ctx context.Context, request resolver.Request) (resolver.Response, error) {
+	handler := func(ctx context.Context, request interface{}) (resolver.Response, error) {
 		return nil, nil
 	}
 
