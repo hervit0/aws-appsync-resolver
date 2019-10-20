@@ -1,0 +1,51 @@
+version: 2.1
+
+filters: &filters
+  filters:
+    branches:
+      only: master
+
+executors:
+  build-executor:
+    docker:
+      - image: circleci/golang:1.13
+    working_directory: /go/src/github.com/hervit0/aws-appsync-resolver
+
+commands:
+  save_latest_cache:
+    steps:
+      - save_cache:
+          key: go-cache-{{ checksum "Gopkg.toml" }}
+          paths:
+            - "/go/pkg"
+  restore_latest_cache:
+    steps:
+      - restore_cache:
+          keys:
+            - go-cache-{{ checksum "Gopkg.toml" }}
+            - go-cache-
+  restore_workspace:
+    description: "Restores the workspace for deployment"
+    steps:
+      - attach_workspace:
+          at: ~/project
+
+jobs:
+  build:
+    executor: build-executor
+    steps:
+      - checkout
+      - restore_latest_cache
+      - run:
+          name: Install Task Manager
+          command: go get github.com/go-task/task/cmd/task
+      - run: task install
+      - run: task test
+      - save_latest_cache
+
+workflows:
+  version: 2
+  build-step:
+    jobs:
+      - build:
+          <<: *filters

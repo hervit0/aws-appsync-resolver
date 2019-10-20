@@ -1,0 +1,18 @@
+version: '2'
+
+tasks:
+  default:
+    cmds:
+      - task: test
+
+  dep:
+    desc: Install dep depdendecies
+    cmds:
+      - dep ensure
+
+  test:
+    desc: Run unit tests
+    sources:
+      - '*/**.go'
+    cmds:
+      - go test -v ./... -count=1
