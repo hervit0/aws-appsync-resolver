@@ -8,7 +8,7 @@ filters: &filters
 executors:
   build-executor:
     docker:
-      - image: circleci/golang:1.13
+      - image: circleci/golang:1.13.0-stretch
     working_directory: /go/src/github.com/hervit0/aws-appsync-resolver
 
 commands:
@@ -37,9 +37,9 @@ jobs:
       - checkout
       - restore_latest_cache
       - run:
-          name: Install Task Manager
+          name: Install Taskfile
           command: go get github.com/go-task/task/cmd/task
-      - run: task install
+      - run: task dep
       - run: task test
       - save_latest_cache
 

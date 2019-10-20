@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="999e4004-160a-4009-9945-bcf181eb9d97" name="Default Changelist" comment="" />
+    <list default="true" id="999e4004-160a-4009-9945-bcf181eb9d97" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.circleci/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.circleci/config.yml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,6 +115,7 @@
     <MESSAGE value="HAL &gt; Wire resolver and pipeline calls" />
     <MESSAGE value="HAL &gt; Automate build" />
     <MESSAGE value="HAL &gt; Use AWS Lambda lib to build an handler" />
-    <option name="LAST_COMMIT_MESSAGE" value="HAL &gt; Use AWS Lambda lib to build an handler" />
+    <MESSAGE value="HAL &gt; Save my IDE config" />
+    <option name="LAST_COMMIT_MESSAGE" value="HAL &gt; Save my IDE config" />
   </component>
 </project>
