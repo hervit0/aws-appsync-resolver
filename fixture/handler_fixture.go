@@ -3,12 +3,15 @@ package fixture
 import (
 	"context"
 	"errors"
+	"log"
 )
 
 type Handler struct {
 	Error string
 }
 
-func (handler Handler) Invoke(ctx context.Context, payload RequestFixture) ([]byte, error) {
-	return nil, errors.New(handler.Error)
+func (handler Handler) Handle(ctx context.Context, payload RequestFixture) (ResponseFixture, error) {
+	log.Printf("Payload: %+v", payload)
+	log.Printf("About to respond")
+	return ResponseFixture{Animal: "yo"}, errors.New(handler.Error)
 }

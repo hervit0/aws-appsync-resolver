@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="999e4004-160a-4009-9945-bcf181eb9d97" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.circleci/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.circleci/config.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fixture/response_fixture.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fixture/handler_fixture.go" beforeDir="false" afterPath="$PROJECT_DIR$/fixture/handler_fixture.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pipeline/pipeline.go" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline/pipeline.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pipeline/pipeline_suite_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline/pipeline_suite_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resolver/resolver.go" beforeDir="false" afterPath="$PROJECT_DIR$/resolver/resolver.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,10 +43,13 @@
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.dep.integrator" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../appsync-resolvers" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/fixture" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/fixture" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/fixture" />
     </key>
@@ -58,8 +66,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Test.Unit Test">
-    <configuration name="TestPipeline in github.com/hervit0/aws-appsync-resolver/pipeline" type="GoTestRunConfiguration" factoryName="Go Test" nameIsGenerated="true">
+  <component name="RunManager" selected="Go Test.TestPipeline in github.com/hervit0/aws-appsync-resolver/pipeline">
+    <configuration name="TestPipeline in github.com/hervit0/aws-appsync-resolver/pipeline" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="aws-appsync-resolver" />
       <working_directory value="$PROJECT_DIR$/pipeline" />
       <framework value="gotest" />
@@ -88,6 +96,7 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestPipeline in github.com/hervit0/aws-appsync-resolver/pipeline" />
         <item itemvalue="Go Test.TestResolver in github.com/hervit0/aws-appsync-resolver/resolver" />
       </list>
     </recent_temporary>
@@ -116,6 +125,18 @@
     <MESSAGE value="HAL &gt; Automate build" />
     <MESSAGE value="HAL &gt; Use AWS Lambda lib to build an handler" />
     <MESSAGE value="HAL &gt; Save my IDE config" />
-    <option name="LAST_COMMIT_MESSAGE" value="HAL &gt; Save my IDE config" />
+    <MESSAGE value="HAL &gt; Bump go version for CI and fix typo mistake" />
+    <option name="LAST_COMMIT_MESSAGE" value="HAL &gt; Bump go version for CI and fix typo mistake" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/resolver/resolver.go</url>
+          <line>21</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

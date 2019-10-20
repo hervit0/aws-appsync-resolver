@@ -12,6 +12,7 @@ type Pipeline map[string]resolver.Resolver
 
 func (pipeline *Pipeline) Declare(resolverName string, handler interface{}) *Pipeline {
 	resolverOp, err := resolver.ToResolver(handler)
+	// TODO: Error to spit back
 	if err != nil {
 		log.Printf("error resolver declaration: %v", err)
 	}
