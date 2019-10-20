@@ -5,12 +5,17 @@ import (
 	"fmt"
 	"github.com/hervit0/aws-appsync-resolver/invocation"
 	"github.com/hervit0/aws-appsync-resolver/resolver"
+	"log"
 )
 
 type Pipeline map[string]resolver.Resolver
 
-func (pipeline *Pipeline) Declare(resolverName string, handler resolver.Handler) *Pipeline {
-	(*pipeline)[resolverName] = resolver.Resolver{Handler: handler}
+func (pipeline *Pipeline) Declare(resolverName string, handler interface{}) *Pipeline {
+	resolverOp, err := resolver.ToResolver(handler)
+	if err != nil {
+		log.Printf("error resolver declaration: %v", err)
+	}
+	(*pipeline)[resolverName] = resolverOp
 	return pipeline
 }
 
@@ -25,5 +30,5 @@ func (pipeline Pipeline) Handle(context context.Context, invocation invocation.I
 		return nil, errParsingPayload
 	}
 
-	return resolverHandler.Resolve(context, payload)
+	return resolverHandler.Resolve(context, *payload)
 }

@@ -15,20 +15,23 @@ func TestResolver(t *testing.T) {
 	RunSpecs(t, "Resolver Suite")
 }
 
+type handlerTest struct{}
+
+func (handler handlerTest) Invoke(ctx context.Context, payload []byte) ([]byte, error) {
+	return nil, nil
+}
+
 var _ = Describe("Resolver", func() {
 	var r resolver.Resolver
-	handler := func(ctx context.Context, request interface{}) (resolver.Response, error) {
-		return nil, nil
-	}
 
 	BeforeEach(func() {
-		r.Handler = handler
+		r.Handler = handlerTest{}
 	})
 
 	Describe(".Resolve", func() {
 		It("call the resolver handler and return response", func() {
 			request := fixture.RawRequestFixture()
-			response, err := r.Resolve(context.TODO(), &request)
+			response, err := r.Resolve(context.TODO(), request)
 
 			Expect(response).To(BeNil())
 			Expect(err).To(BeNil())

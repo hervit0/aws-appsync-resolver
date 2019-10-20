@@ -2,42 +2,20 @@ package resolver
 
 import (
 	"context"
-	"encoding/json"
-	"fmt"
-	"reflect"
+	"github.com/aws/aws-lambda-go/lambda"
 )
-
-type InvocationRequest *json.RawMessage
 
 type Response interface{}
 
-type Handler func(context context.Context, request interface{}) (Response, error)
-
 type Resolver struct {
-	Handler Handler
+	Handler lambda.Handler
 }
 
-func (resolver Resolver) Resolve(context context.Context, request InvocationRequest) (Response, error) {
-	handlerRequestType := reflect.TypeOf(resolver.Handler).In(1)
-	requestArguments, err := parse(request, &handlerRequestType)
-	if err != nil {
-		return nil, err
-	}
-	requestArgumentsWithContext := append([]reflect.Value{reflect.ValueOf(context)}, requestArguments...)
-
-	response := reflect.ValueOf(resolver.Handler).Call(requestArgumentsWithContext)
-	if response[1].IsNil() {
-		return response[0].Interface(), nil
-	}
-	return response[0].Interface(), response[1].Interface().(error)
+func ToResolver(handler interface{}) (Resolver, error) {
+	resolverHandler := lambda.NewHandler(handler)
+	return Resolver{Handler: resolverHandler}, nil
 }
 
-func parse(rawPayload InvocationRequest, requestType *reflect.Type) ([]reflect.Value, error) {
-	args := reflect.New(*requestType)
-
-	if err := json.Unmarshal(*rawPayload, args.Interface()); err != nil {
-		return nil, fmt.Errorf("error parsing payload: %v", err)
-	}
-
-	return append([]reflect.Value{}, args.Elem()), nil
+func (resolver Resolver) Resolve(context context.Context, request []byte) (Response, error) {
+	return resolver.Handler.Invoke(context, request)
 }

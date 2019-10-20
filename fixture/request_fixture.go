@@ -9,7 +9,7 @@ type RequestFixture struct {
 	Name string `json:"name"`
 }
 
-func RawRequestFixture() json.RawMessage {
+func RawRequestFixture() []byte {
 	testStruct := RequestFixture{Name: "Test"}
 	reqBodyBytes := new(bytes.Buffer)
 	json.NewEncoder(reqBodyBytes).Encode(testStruct)

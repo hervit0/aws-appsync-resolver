@@ -2,9 +2,10 @@ package pipeline_test
 
 import (
 	"context"
+	"errors"
+	"github.com/hervit0/aws-appsync-resolver/fixture"
 	"github.com/hervit0/aws-appsync-resolver/pipeline"
 	"github.com/hervit0/aws-appsync-resolver/resolver"
-	"reflect"
 	"testing"
 
 	. "github.com/onsi/ginkgo"
@@ -18,9 +19,6 @@ func TestPipeline(t *testing.T) {
 
 var _ = Describe("Pipeline", func() {
 	var pipeline pipeline.Pipeline
-	handler := func(ctx context.Context, request interface{}) (resolver.Response, error) {
-		return nil, nil
-	}
 
 	BeforeEach(func() {
 		pipeline = make(map[string]resolver.Resolver)
@@ -28,23 +26,37 @@ var _ = Describe("Pipeline", func() {
 
 	Describe(".Declare", func() {
 		It("add a unique resolver", func() {
-			pipeline.Declare("handler", handler)
+			pipeline.Declare("handler", fixture.Handler{Error: "yo"}.Invoke)
 
 			storedResolver, ok := pipeline["handler"]
 			Expect(ok).To(BeTrue())
-			Expect(reflect.ValueOf(storedResolver.Handler).Pointer()).To(Equal(reflect.ValueOf(handler).Pointer()))
+
+			_, err := storedResolver.Handler.Invoke(context.TODO(), fixture.RawRequestFixture())
+			Expect(err).To(Equal(errors.New("yo")))
 		})
 
 		It("add multiple resolvers", func() {
-			pipeline.Declare("handler A", handler).Declare("handler B", handler)
+			pipeline.Declare("handler A", fixture.Handler{Error: "A"}.Invoke)
+			pipeline.Declare("handler B", fixture.Handler{Error: "B"}.Invoke)
 
-			storedResolverA, ok := pipeline["handler A"]
+			_, ok := pipeline["handler A"]
 			Expect(ok).To(BeTrue())
-			Expect(reflect.ValueOf(storedResolverA.Handler).Pointer()).To(Equal(reflect.ValueOf(handler).Pointer()))
 
-			storedResolverB, ok := pipeline["handler B"]
+			_, ok = pipeline["handler B"]
 			Expect(ok).To(BeTrue())
-			Expect(reflect.ValueOf(storedResolverB.Handler).Pointer()).To(Equal(reflect.ValueOf(handler).Pointer()))
+		})
+
+		It("map correctly the handlers", func() {
+			pipeline.Declare("handler A", fixture.Handler{Error: "A"}.Invoke)
+			pipeline.Declare("handler B", fixture.Handler{Error: "B"}.Invoke)
+
+			storedResolverA, _ := pipeline["handler A"]
+			_, err := storedResolverA.Handler.Invoke(context.TODO(), fixture.RawRequestFixture())
+			Expect(err).To(Equal(errors.New("A")))
+
+			storedResolverB, _ := pipeline["handler B"]
+			_, err = storedResolverB.Handler.Invoke(context.TODO(), fixture.RawRequestFixture())
+			Expect(err).To(Equal(errors.New("B")))
 		})
 	})
 })
