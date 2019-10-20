@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="999e4004-160a-4009-9945-bcf181eb9d97" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" path="$USER_HOME$/.asdf/installs/golang/1.12.4/go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GoDepProject">
+    <integration-enabled>true</integration-enabled>
+    <exec-path>$PROJECT_DIR$/../../../../bin/dep</exec-path>
+  </component>
+  <component name="ProjectId" id="1SQ56MetmKkjCrJtIbmZBSJKL3e" />
+  <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="GO_FMT" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="go.tried.to.enable.integration.dep.integrator" value="true" />
+    <property name="go.vendoring.notification.had.been.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../appsync-resolvers" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/fixture" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Go Test.Unit Test">
+    <configuration name="TestPipeline in github.com/hervit0/aws-appsync-resolver/pipeline" type="GoTestRunConfiguration" factoryName="Go Test" nameIsGenerated="true">
+      <module name="aws-appsync-resolver" />
+      <working_directory value="$PROJECT_DIR$/pipeline" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/hervit0/aws-appsync-resolver/pipeline" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestPipeline$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestResolver in github.com/hervit0/aws-appsync-resolver/resolver" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="aws-appsync-resolver" />
+      <working_directory value="$PROJECT_DIR$/resolver" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/hervit0/aws-appsync-resolver/resolver" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestResolver$" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Go Test.Unit Test" />
+      <item itemvalue="Go Test.TestPipeline in github.com/hervit0/aws-appsync-resolver/pipeline" />
+      <item itemvalue="Go Test.TestResolver in github.com/hervit0/aws-appsync-resolver/resolver" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Test.TestResolver in github.com/hervit0/aws-appsync-resolver/resolver" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="HAL &gt; Remove indirection for Handler checking" />
+    <MESSAGE value="HAL &gt; Added tests for pipeline" />
+    <MESSAGE value="HAL &gt; Implement resolver call" />
+    <MESSAGE value="HAL &gt; Wire resolver and pipeline calls" />
+    <MESSAGE value="HAL &gt; Automate build" />
+    <MESSAGE value="HAL &gt; Use AWS Lambda lib to build an handler" />
+    <option name="LAST_COMMIT_MESSAGE" value="HAL &gt; Use AWS Lambda lib to build an handler" />
+  </component>
+</project>

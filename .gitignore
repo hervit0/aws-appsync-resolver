@@ -17,3 +17,5 @@
 
 # External libs
 vendor
+
+!.idea
